@@ -6,6 +6,24 @@
     <description>Most recent ClashX updates</description>
     <language>en</language>
     <item>
+  <title>Version 1.138.0</title>
+  <description><![CDATA[
+    <h2>ClashX v1.138.0</h2><li>**upgrade generated config DNS to DoH/DoT to resolve CN domain timeout**</li><p>When CN domains (doubao.com, qq.com, baidu.com, etc.) are matched by GEOSITE/cn or DOMAIN-SUFFIX rules and routed DIRECT, mihomo&#x27;s internal resolver was failing with &#x27;dns resolve failed: context deadline exceeded&#x27; on networks where plain UDP/53 is throttled, filtered, or polluted.</p><p>修复 CN domain timeout 的问题</p><p>---</p><p>Minimum system requirement: macOS 10.14.</p><p>最低系统要求：macOS 10.14。</p>
+  ]]></description>
+  <pubDate>Wed, 06 May 2026 03:05:31 +0000</pubDate>
+  <sparkle:version>1.138.0</sparkle:version>
+  <sparkle:shortVersionString>1.138.0</sparkle:shortVersionString>
+  <sparkle:minimumSystemVersion>10.14</sparkle:minimumSystemVersion>
+  <enclosure
+    url="https://github.com/ClashX-Pro/ClashX/releases/download/1.138.0/ClashX.dmg"
+    sparkle:version="1.138.0"
+    sparkle:shortVersionString="1.138.0"
+    sparkle:edSignature="8n0rDjoxDq3z46GIrDIitbXChg58Ee2ynPLJQvxy/HUmVLugYfViExh+SM4q/8NXwmWmD54aswXyTiwuWyz5DA=="
+    length="46851789"
+    type="application/octet-stream"
+  />
+</item>
+    <item>
   <title>Version 1.137.0</title>
   <description><![CDATA[
     <h2>ClashX v1.137.0</h2><li>**prioritize proxy selector in generated configs**</li><p>修复: 代理相关问题</p><li>**support mihomo share-link conversion**</li><p>支持 mihomo 相关问题</p><p>---</p><p>Minimum system requirement: macOS 10.14.</p><p>最低系统要求：macOS 10.14。</p>
