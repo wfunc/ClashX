@@ -6,6 +6,24 @@
     <description>Most recent ClashX updates</description>
     <language>en</language>
     <item>
+  <title>Version 1.139.0</title>
+  <description><![CDATA[
+    <h2>ClashX v1.139.0</h2><li>**align share-link Go DNS defaults with DoH/DoT (parity with Swift template)**</li><p>The clashConvertShareLinks Go cgo function still emitted plain UDP/53 DNS in the auto-generated config when users imported share links through the Go path:</p><p>修复: align share-link Go DNS defaults with DoH/DoT (parity with Swift template)</p><p>---</p><p>Minimum system requirement: macOS 10.14.</p><p>最低系统要求：macOS 10.14。</p>
+  ]]></description>
+  <pubDate>Thu, 07 May 2026 07:48:37 +0000</pubDate>
+  <sparkle:version>1.139.0</sparkle:version>
+  <sparkle:shortVersionString>1.139.0</sparkle:shortVersionString>
+  <sparkle:minimumSystemVersion>10.14</sparkle:minimumSystemVersion>
+  <enclosure
+    url="https://github.com/ClashX-Pro/ClashX/releases/download/1.139.0/ClashX.dmg"
+    sparkle:version="1.139.0"
+    sparkle:shortVersionString="1.139.0"
+    sparkle:edSignature="/6OpRX3zgFn1BvE+UURAfgEZKOIdcjtwzwrhAAld34zJnKA/JCj1+olOmexxa5+Z9sW64qPKg+KM3jJS6DhOAg=="
+    length="46851413"
+    type="application/octet-stream"
+  />
+</item>
+    <item>
   <title>Version 1.138.0</title>
   <description><![CDATA[
     <h2>ClashX v1.138.0</h2><li>**upgrade generated config DNS to DoH/DoT to resolve CN domain timeout**</li><p>When CN domains (doubao.com, qq.com, baidu.com, etc.) are matched by GEOSITE/cn or DOMAIN-SUFFIX rules and routed DIRECT, mihomo&#x27;s internal resolver was failing with &#x27;dns resolve failed: context deadline exceeded&#x27; on networks where plain UDP/53 is throttled, filtered, or polluted.</p><p>修复 CN domain timeout 的问题</p><p>---</p><p>Minimum system requirement: macOS 10.14.</p><p>最低系统要求：macOS 10.14。</p>
