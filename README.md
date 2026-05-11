@@ -24,7 +24,23 @@ This project is based on code originally created by [yichengchen](https://github
 - 📥 [Download Latest Version](https://clashx.tech/download)
 - 📖 [Documentation & Tutorial](https://clashx.tech/tutorial)
 - ❓ [FAQ](https://clashx.tech/tutorial#faq)
-- 🚀 **Next-Gen Client**: [ClashFX](https://clashfx.com) — A modern macOS proxy client with visual config editor
+- 🚀 **Next-Gen Client**: [ClashFX](https://clashfx.com) — A modern macOS proxy client with advanced features
+
+---
+
+## 🚀 Need Advanced Features? Try ClashFX
+
+ClashX focuses on a simple, lightweight, and compatible macOS proxy experience. If you need more advanced capabilities, we recommend migrating to [ClashFX](https://github.com/Clash-FX/ClashFX), our next-generation macOS client built around the mihomo core.
+
+ClashFX includes advanced features such as:
+
+- **Enhanced Mode (TUN)** for system-wide TCP/UDP traffic capture
+- Support for newer proxy protocols and mihomo core capabilities
+- Rule-based routing with domain, IP-CIDR, GeoIP, and process matching
+- Fake-IP DNS mode and gVisor userspace network stack
+- Built-in dashboard and a more complete modern macOS experience
+
+Download ClashFX from [GitHub Releases](https://github.com/Clash-FX/ClashFX/releases) or the official website: [https://clashfx.com](https://clashfx.com).
 
 ---
 
@@ -49,9 +65,9 @@ ClashX aims to provide a simple and lightweight proxy client with an intuitive i
 
 ## 📥 Installation
 
-**ClashX Pro** comes with enhanced mode and other Clash Premium Core features.
+Download ClashX from the [Releases](https://github.com/charlessnow/ClashX/releases) page.
 
-Download from the [Releases](https://github.com/charlessnow/ClashX/releases) page.
+For Enhanced Mode (TUN), newer protocol support, and other advanced capabilities, use [ClashFX](https://github.com/Clash-FX/ClashFX).
 
 ## 🔨 Build from Source
 
