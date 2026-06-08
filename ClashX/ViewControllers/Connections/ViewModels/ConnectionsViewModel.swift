@@ -50,6 +50,10 @@ class ConnectionsViewModel {
     private let req = ConnectionsReq()
     private let logReq = StructedLogReq()
     private var verifyConnList = [LogConn]()
+
+    private let maxRecentConnectionCount = 2000
+    private let maxVerifiedLogConnectionCount = 1000
+
     init() {
         req.connect()
         logReq.connect()
@@ -58,8 +62,17 @@ class ConnectionsViewModel {
             self?.update(snapShot: snap)
         }
         logReq.onLogUpdate.compactMap { $0.convertToConn() }.sink { [weak self] conn in
-            self?.verifyConnList.append(conn)
+            guard let self = self else { return }
+            self.verifyConnList.append(conn)
+            if self.verifyConnList.count > self.maxVerifiedLogConnectionCount {
+                self.verifyConnList.removeFirst(self.verifyConnList.count - self.maxVerifiedLogConnectionCount)
+            }
         }.store(in: &cancellable)
+    }
+
+    deinit {
+        req.disconnect()
+        logReq.disconnect()
     }
 
     func update(snapShot: ClashConnectionSnapShot) {
@@ -126,6 +139,33 @@ class ConnectionsViewModel {
         }
 
         verifyConnList.removeAll()
+        trimRecentConnectionsIfNeeded(activeConnectionIDs: keys)
+    }
+
+    private func trimRecentConnectionsIfNeeded(activeConnectionIDs: Set<String>) {
+        guard connections.count > maxRecentConnectionCount else { return }
+
+        let finishedIDs = connections.values
+            .filter { !activeConnectionIDs.contains($0.id) }
+            .sorted { $0.start < $1.start }
+            .map(\.id)
+
+        let removeCount = min(connections.count - maxRecentConnectionCount, finishedIDs.count)
+        guard removeCount > 0 else { return }
+
+        for id in finishedIDs.prefix(removeCount) {
+            connections.removeValue(forKey: id)
+        }
+
+        rebuildFilterIndexes()
+    }
+
+    private func rebuildFilterIndexes() {
+        sourceIPs = Set(connections.values.map(\.metadata.sourceIP))
+        hosts = Set(connections.values.map(\.metadata.displayHost))
+
+        let usedPIDs = Set(connections.values.compactMap(\.metadata.pid))
+        applicationMap = applicationMap.filter { usedPIDs.contains($0.key) || $0.key == unknownApplicationPlaceHolder.pid }
     }
 
     private func updateForActiveMode(snapShot: ClashConnectionSnapShot) {

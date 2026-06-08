@@ -6,6 +6,9 @@
 //  Copyright © 2019 west2online. All rights reserved.
 //
 
+import Darwin
+import Foundation
+
 extension String {
     func goStringBuffer() -> UnsafeMutablePointer<Int8> {
         if let pointer = (self as NSString).utf8String {
@@ -20,7 +23,7 @@ extension String {
 extension UnsafeMutablePointer where Pointee == Int8 {
     func toString() -> String {
         let string = String(cString: self)
-        deallocate()
+        Darwin.free(UnsafeMutableRawPointer(self))
         return string
     }
 

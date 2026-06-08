@@ -33,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var allowFromLanMenuItem: NSMenuItem!
 
     @IBOutlet var proxyModeMenuItem: NSMenuItem!
+    var tunModeMenuItem: NSMenuItem!
     @IBOutlet var showNetSpeedIndicatorMenuItem: NSMenuItem!
     @IBOutlet var dashboardMenuItem: NSMenuItem!
     @IBOutlet var separatorLineTop: NSMenuItem!
@@ -214,6 +215,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func setupStatusMenuItemData() {
+        setupTunModeMenuItem()
+
         ConfigManager.shared
             .showNetSpeedIndicatorObservable
             .bind { [weak self] show in
@@ -272,6 +275,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 case .rule: self.proxyModeRuleMenuItem.state = .on
                 }
                 self.allowFromLanMenuItem.state = config.allowLan ? .on : .off
+                self.tunModeMenuItem.state = (config.tun?.enable ?? false) ? .on : .off
 
                 self.proxyModeMenuItem.title = "\(NSLocalizedString("Proxy Mode", comment: "")) (\(config.mode.name))"
 
@@ -394,6 +398,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     self?.resetStreamApi()
                 }
             }.disposed(by: disposeBag)
+    }
+
+    func setupTunModeMenuItem() {
+        tunModeMenuItem = NSMenuItem(title: NSLocalizedString("Set TUN Mode", comment: ""), action: #selector(actionSetTunMode(_:)), keyEquivalent: "")
+        tunModeMenuItem.target = self
+        tunModeMenuItem.isEnabled = true
+
+        guard let menu = proxySettingMenuItem.menu,
+              let systemProxyIndex = menu.items.firstIndex(of: proxySettingMenuItem) else { return }
+        menu.insertItem(tunModeMenuItem, at: systemProxyIndex + 1)
     }
 
     func updateProxyList(withMenus menus: [NSMenuItem]) {
@@ -640,6 +654,22 @@ extension AppDelegate {
 
     @IBAction func actionShowNetSpeedIndicator(_ sender: NSMenuItem) {
         ConfigManager.shared.showNetSpeedIndicator = !(sender.state == .on)
+    }
+
+    @IBAction func actionSetTunMode(_ sender: NSMenuItem) {
+        let enable = sender.state != .on
+        sender.isEnabled = false
+        ApiRequest.updateTunMode(enable: enable) { [weak self, weak sender] success in
+            DispatchQueue.main.async {
+                sender?.isEnabled = true
+                guard success else {
+                    NSUserNotificationCenter.default.post(title: "Error",
+                                                          info: NSLocalizedString("Failed to update TUN mode", comment: ""))
+                    return
+                }
+                self?.syncConfig()
+            }
+        }
     }
 
     @IBAction func actionSetSystemProxy(_ sender: Any?) {

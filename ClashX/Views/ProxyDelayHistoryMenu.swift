@@ -46,6 +46,7 @@ class ProxyDelayHistoryMenu: NSMenu {
                 insertItem(item, at: idx)
             }
         } else {
+            removeAllItems()
             historys.map { his in
                 NSMenuItem(title: his.displayString, action: nil, keyEquivalent: "")
             }.forEach { item in

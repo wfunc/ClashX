@@ -30,6 +30,12 @@ class ConnectionsReq: WebSocketDelegate {
         socket?.connect()
     }
 
+    func disconnect() {
+        socket?.delegate = nil
+        socket?.disconnect(forceTimeout: 0)
+        socket = nil
+    }
+
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         if let data = text.data(using: .utf8) {
             do {

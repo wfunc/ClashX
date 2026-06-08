@@ -6,6 +6,7 @@ ClashX.h
 ClashX/Resources/dashboard
 ClashX.app
 *.dmg
+*.zip
 **/xcuserdata/
 .idea
 *.pyc

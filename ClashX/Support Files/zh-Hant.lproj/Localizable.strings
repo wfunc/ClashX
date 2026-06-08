@@ -306,3 +306,9 @@
 
 /* No comment provided by engineer. */
 "Use reload config to try reconnect." = "使用重新加載配置嘗試重新連接";
+
+/* No comment provided by engineer. */
+"Set TUN Mode" = "設定 TUN 模式";
+
+/* No comment provided by engineer. */
+"Failed to update TUN mode" = "更新 TUN 模式失敗";

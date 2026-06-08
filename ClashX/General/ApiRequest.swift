@@ -166,6 +166,13 @@ class ApiRequest {
         })
     }
 
+    static func updateTunMode(enable: Bool, callback: ((Bool) -> Void)? = nil) {
+        req("/configs", method: .patch, parameters: ["tun": ["enable": enable]], encoding: JSONEncoding.default)
+            .responseData { response in
+                callback?(response.response?.statusCode == 204)
+            }
+    }
+
     static func requestProxyGroupList(completeHandler: ((ClashProxyResp) -> Void)? = nil) {
         req("/proxies").responseData {
             res in
@@ -182,9 +189,8 @@ class ApiRequest {
                 case let .success(providerResp):
                     completeHandler?(providerResp)
                 case let .failure(err):
-                    Logger.log("\(err)")
+                    Logger.log("\(err)", level: .warning)
                     completeHandler?(ClashProviderResp())
-                    assertionFailure()
                 }
             }
     }
