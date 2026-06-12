@@ -17,6 +17,8 @@
 		490C8A102AC26E67007140F2 /* JSBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490C8A0F2AC26E67007140F2 /* JSBridge.swift */; };
 		4913C82321157D0200F6B87C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913C82221157D0200F6B87C /* Notification.swift */; };
 		491E6203258A424D00313AEF /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 491E61FD258A424500313AEF /* CommonUtils.m */; };
+		5A7C1B0E2DF1A10000000003 /* TunManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7C1B0E2DF1A10000000002 /* TunManager.m */; };
+		5A7C1B0E2DF1A10000000005 /* TunModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7C1B0E2DF1A10000000004 /* TunModeManager.swift */; };
 		49228457270AADE20027A4B6 /* RemoteConfigUpdateIntervalSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49228456270AADE20027A4B6 /* RemoteConfigUpdateIntervalSettingView.swift */; };
 		49281C802A1F01FA00F60935 /* DebugSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49281C7F2A1F01FA00F60935 /* DebugSettingViewController.swift */; };
 		4929F610258CD22E00A435F6 /* menu_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4929F60F258CD22E00A435F6 /* menu_icon@2x.png */; };
@@ -293,6 +295,9 @@
 		F935B2F22307CD32009E4D33 /* ProxyConfigHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProxyConfigHelper.h; sourceTree = "<group>"; };
 		F935B2F32307CD32009E4D33 /* ProxyConfigHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProxyConfigHelper.m; sourceTree = "<group>"; };
 		F935B2F52307D00D009E4D33 /* ProxyConfigRemoteProcessProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProxyConfigRemoteProcessProtocol.h; sourceTree = "<group>"; };
+		5A7C1B0E2DF1A10000000001 /* TunManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TunManager.h; sourceTree = "<group>"; };
+		5A7C1B0E2DF1A10000000002 /* TunManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TunManager.m; sourceTree = "<group>"; };
+		5A7C1B0E2DF1A10000000004 /* TunModeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunModeManager.swift; sourceTree = "<group>"; };
 		F935B2F823083EE6009E4D33 /* ProxySettingTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProxySettingTool.h; sourceTree = "<group>"; };
 		F935B2F923083EE6009E4D33 /* ProxySettingTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProxySettingTool.m; sourceTree = "<group>"; };
 		F935B2FB23085515009E4D33 /* SystemProxyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemProxyManager.swift; sourceTree = "<group>"; };
@@ -382,6 +387,7 @@
 				495BFB8721919B9800C8779D /* RemoteConfigManager.swift */,
 				4952C3BE2115C7CA004A4FA8 /* MenuItemFactory.swift */,
 				F935B2FB23085515009E4D33 /* SystemProxyManager.swift */,
+				5A7C1B0E2DF1A10000000004 /* TunModeManager.swift */,
 				F977FAAB2366790500C17F1F /* AutoUpgardeManager.swift */,
 				F977FAAD23669D6400C17F1F /* ConnectionManager.swift */,
 				F9E754CF239CC21F00CEE7CC /* WebPortalManager.swift */,
@@ -696,6 +702,8 @@
 				F935B2F52307D00D009E4D33 /* ProxyConfigRemoteProcessProtocol.h */,
 				F935B2F823083EE6009E4D33 /* ProxySettingTool.h */,
 				F935B2F923083EE6009E4D33 /* ProxySettingTool.m */,
+				5A7C1B0E2DF1A10000000001 /* TunManager.h */,
+				5A7C1B0E2DF1A10000000002 /* TunManager.m */,
 			);
 			path = ProxyConfigHelper;
 			sourceTree = "<group>";
@@ -932,6 +940,7 @@
 				495340B320DE68C300B0D3FF /* StatusItemView.swift in Sources */,
 				AA0001010000000000000002 /* SpeedTextView.swift in Sources */,
 				F935B2FC23085515009E4D33 /* SystemProxyManager.swift in Sources */,
+				5A7C1B0E2DF1A10000000005 /* TunModeManager.swift in Sources */,
 				0AD7506D2A5B9B26001FFBBD /* ConnectionLeftTextCellView.swift in Sources */,
 				495A44D320D267D000888A0A /* LaunchAtLogin.swift in Sources */,
 				490C8A102AC26E67007140F2 /* JSBridge.swift in Sources */,
@@ -1031,6 +1040,7 @@
 				F9A7C06C2306E874007163C7 /* main.m in Sources */,
 				491E6203258A424D00313AEF /* CommonUtils.m in Sources */,
 				F935B2FA23083EE6009E4D33 /* ProxySettingTool.m in Sources */,
+				5A7C1B0E2DF1A10000000003 /* TunManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

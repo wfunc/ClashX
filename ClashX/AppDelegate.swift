@@ -160,6 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         registCrashLogger()
         KeyboardShortCutManager.setup()
         RemoteControlManager.setupMenuItem(separator: externalControlSeparator)
+        TunModeManager.shared.setupAtLaunch()
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
@@ -537,6 +538,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             } else {
                 self.syncConfig()
                 self.resetStreamApi()
+                // ApplyConfig resets tun to the config file's value and
+                // closes the previous tun fd; bring it back if enabled.
+                TunModeManager.shared.reapplyIfNeeded()
                 self.runAfterConfigReload?()
                 self.runAfterConfigReload = nil
                 if showNotification {
@@ -659,16 +663,15 @@ extension AppDelegate {
     @IBAction func actionSetTunMode(_ sender: NSMenuItem) {
         let enable = sender.state != .on
         sender.isEnabled = false
-        ApiRequest.updateTunMode(enable: enable) { [weak self, weak sender] success in
-            DispatchQueue.main.async {
-                sender?.isEnabled = true
-                guard success else {
-                    NSUserNotificationCenter.default.post(title: "Error",
-                                                          info: NSLocalizedString("Failed to update TUN mode", comment: ""))
-                    return
-                }
-                self?.syncConfig()
+        TunModeManager.shared.setTunMode(enable: enable) { [weak self, weak sender] errorMessage in
+            sender?.isEnabled = true
+            if let errorMessage = errorMessage {
+                NSUserNotificationCenter.default.post(title: NSLocalizedString("Failed to update TUN mode", comment: ""),
+                                                      info: errorMessage)
+            } else {
+                Settings.tunMode = enable
             }
+            self?.syncConfig()
         }
     }
 

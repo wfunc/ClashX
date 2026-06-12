@@ -166,11 +166,28 @@ class ApiRequest {
         })
     }
 
-    static func updateTunMode(enable: Bool, callback: ((Bool) -> Void)? = nil) {
-        req("/configs", method: .patch, parameters: ["tun": ["enable": enable]], encoding: JSONEncoding.default)
+    /// Unlike requestConfig, always calls back (nil on failure) and has no
+    /// notification/restart side effects.
+    static func getConfig(completeHandler: @escaping ((ClashConfig?) -> Void)) {
+        if !useDirectApi() {
+            req("/configs").responseDecodable(of: ClashConfig.self) { resp in
+                completeHandler(try? resp.result.get())
+            }
+            return
+        }
+        let data = clashGetConfigs()?.toString().data(using: .utf8) ?? Data()
+        completeHandler(ClashConfig.fromData(data))
+    }
+
+    static func updateTun(params: [String: Any], callback: ((Bool) -> Void)? = nil) {
+        req("/configs", method: .patch, parameters: ["tun": params], encoding: JSONEncoding.default)
             .responseData { response in
                 callback?(response.response?.statusCode == 204)
             }
+    }
+
+    static func updateTunMode(enable: Bool, callback: ((Bool) -> Void)? = nil) {
+        updateTun(params: ["enable": enable], callback: callback)
     }
 
     static func requestProxyGroupList(completeHandler: ((ClashProxyResp) -> Void)? = nil) {

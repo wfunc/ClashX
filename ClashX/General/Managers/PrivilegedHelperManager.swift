@@ -217,6 +217,9 @@ extension PrivilegedHelperManager {
 
         let result = installHelperDaemon()
         if case .success = result {
+            // Re-verify so the .installed branch runs and
+            // isHelperCheckFinished fires for its subscribers.
+            checkInstall()
             return
         }
 

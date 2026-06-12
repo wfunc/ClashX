@@ -81,4 +81,7 @@ enum Settings {
 
     @UserDefault("kDisableRestoreProxy", defaultValue: false)
     static var disableRestoreProxy: Bool
+
+    @UserDefault("kTunMode", defaultValue: false)
+    static var tunMode: Bool
 }

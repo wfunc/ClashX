@@ -312,3 +312,21 @@
 
 /* No comment provided by engineer. */
 "Failed to update TUN mode" = "Failed to update TUN mode";
+
+/* No comment provided by engineer. */
+"TUN operation already in progress" = "TUN operation already in progress";
+
+/* No comment provided by engineer. */
+"Clash core is not running" = "Clash core is not running";
+
+/* No comment provided by engineer. */
+"Failed to create TUN interface" = "Failed to create TUN interface";
+
+/* No comment provided by engineer. */
+"Connection to the privileged helper failed. Try reinstalling the helper in Settings - Debug." = "Connection to the privileged helper failed. Try reinstalling the helper in Settings - Debug.";
+
+/* No comment provided by engineer. */
+"Clash core failed to start TUN, check logs" = "Clash core failed to start TUN, check logs";
+
+/* No comment provided by engineer. */
+"Failed to read Clash config" = "Failed to read Clash config";

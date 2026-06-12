@@ -312,3 +312,21 @@
 
 /* No comment provided by engineer. */
 "Failed to update TUN mode" = "更新 TUN 模式失败";
+
+/* No comment provided by engineer. */
+"TUN operation already in progress" = "TUN 操作正在进行中";
+
+/* No comment provided by engineer. */
+"Clash core is not running" = "Clash 核心未运行";
+
+/* No comment provided by engineer. */
+"Failed to create TUN interface" = "创建 TUN 虚拟网卡失败";
+
+/* No comment provided by engineer. */
+"Connection to the privileged helper failed. Try reinstalling the helper in Settings - Debug." = "连接特权助手失败,请尝试在 设置 - Debug 中重装助手";
+
+/* No comment provided by engineer. */
+"Clash core failed to start TUN, check logs" = "Clash 核心启动 TUN 失败,请查看日志";
+
+/* No comment provided by engineer. */
+"Failed to read Clash config" = "读取 Clash 配置失败";

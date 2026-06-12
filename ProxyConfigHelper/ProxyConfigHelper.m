@@ -10,6 +10,7 @@
 #import <AppKit/AppKit.h>
 #import "ProxyConfigRemoteProcessProtocol.h"
 #import "ProxySettingTool.h"
+#import "TunManager.h"
 
 @interface ProxyConfigHelper()
 <
@@ -127,6 +128,13 @@ ProxyConfigRemoteProcessProtocol
         NSDictionary *info = [ProxySettingTool currentProxySettings];
         reply(info);
     });
+}
+
+- (void)startTunWithInet4Address:(NSString *)inet4Address
+                    inet6Address:(NSString *)inet6Address
+                             mtu:(int)mtu
+                           reply:(tunReplyBlock)reply {
+    [TunManager startTunWithInet4Address:inet4Address inet6Address:inet6Address mtu:mtu reply:reply];
 }
 
 

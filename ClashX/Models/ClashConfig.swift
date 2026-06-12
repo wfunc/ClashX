@@ -105,4 +105,12 @@ class ClashConfig: Codable {
 
 struct ClashTunConfig: Codable {
     var enable: Bool
+    var inet4Address: [String]?
+    var inet6Address: [String]?
+
+    private enum CodingKeys: String, CodingKey {
+        case enable
+        case inet4Address = "inet4-address"
+        case inet6Address = "inet6-address"
+    }
 }
